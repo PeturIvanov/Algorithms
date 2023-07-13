@@ -5,12 +5,14 @@ def qsort(start, end, nums):
     pivot, left, right = start, start + 1, end
 
     while left <= right:
+        if nums[left] > nums[pivot] > nums[right]:
+            nums[left], nums[right] = nums[right], nums[left]
+
         if nums[left] <= nums[pivot]:
             left += 1
-        elif nums[right] >= nums[pivot]:
+
+        if nums[right] >= nums[pivot]:
             right -= 1
-        else:
-            nums[left], nums[right] = nums[right], nums[left]
 
     nums[pivot], nums[right] = nums[right], nums[pivot]
 
