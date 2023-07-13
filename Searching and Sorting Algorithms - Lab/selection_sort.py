@@ -4,7 +4,7 @@ def selection_sort(nums):
         min_idx = idx
 
         for next_idx in range(idx + 1, len(nums)):
-            if nums[idx] > nums[next_idx] and nums[next_idx] < nums[min_idx]:
+            if nums[next_idx] < nums[min_idx]:
                 min_idx = next_idx
 
         nums[idx], nums[min_idx] = nums[min_idx], nums[idx]
