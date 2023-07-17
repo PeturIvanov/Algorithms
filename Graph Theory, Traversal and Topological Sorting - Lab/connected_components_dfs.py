@@ -24,6 +24,6 @@ for node in range(len(graph)):
 
     result = []
     dfs(node, graph, visited, result)
-    
+
     print(f"Connected component: {' '.join([str(x) for x in result])}")
 
