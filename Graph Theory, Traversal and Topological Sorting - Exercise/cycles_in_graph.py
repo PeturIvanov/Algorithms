@@ -1,5 +1,4 @@
 graph = {}
-
 while True:
     input_line = input()
     if input_line == "End":
