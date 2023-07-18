@@ -1,38 +1,44 @@
-def find_area(row, col, current_letter, letters, field):
+def dfs(row, col, parent, visited, field):
     if 0 > row or row >= len(field) or 0 > col or col >= len(field[0]):
         return
 
-    if current_letter == "v":
+    if visited[row][col]:
         return
 
-    if field[row][col] != current_letter:
+    if field[row][col] != parent:
         return
 
-    field[row][col] = "v"
+    visited[row][col] = True
 
-    find_area(row, col + 1, current_letter, letters, field)
-    find_area(row, col - 1, current_letter, letters, field)
-    find_area(row + 1, col, current_letter, letters, field)
-    find_area(row - 1, col, current_letter, letters, field)
+    dfs(row, col + 1, parent, visited, field)
+    dfs(row, col - 1, parent, visited, field)
+    dfs(row + 1, col, parent, visited, field)
+    dfs(row - 1, col, parent, visited, field)
 
 rows = int(input())
 cols = int(input())
 
-field = [list(input()) for _ in range(rows)]
+field = []
+visited = []
+for _ in range(rows):
+    field.append(list(input()))
+    visited.append([False] * cols)
+
 letters = {}
 
 for r in range(rows):
     for c in range(cols):
-        current_letter = field[r][c]
-        if current_letter == "v":
+        key = field[r][c]
+
+        if visited[r][c]:
             continue
 
-        if current_letter not in letters:
-            letters[current_letter] = 0
+        dfs(r, c, key, visited, field)
 
-        letters[current_letter] += 1
+        if key not in letters:
+            letters[key] = 0
 
-        find_area(r, c, current_letter, letters, field)
+        letters[key] += 1
 
 total_areas = sum(letters.values())
 print(f"Areas: {total_areas}")
