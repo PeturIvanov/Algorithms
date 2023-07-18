@@ -30,6 +30,21 @@ else:
 
 # Second solution with dfs:
 
+# def dfs(node, graph, visited, cycle):
+#     if node in cycle:
+#         print("Acyclic: No")
+#         exit()
+#
+#     if node in visited:
+#         return
+#
+#     visited.add(node)
+#     cycle.add(node)
+#
+#     for child in graph[node]:
+#         dfs(child, graph, visited, cycle)
+#
+#     cycle.remove(node)
 # graph = {}
 # while True:
 #     input_line = input()
@@ -48,24 +63,7 @@ else:
 #
 # visited = set()
 # cycle = set()
-#
-#
-# def dfs(node, graph, visited, cycle):
-#     if node in cycle:
-#         print("Acyclic: No")
-#         exit()
-#
-#     if node in visited:
-#         return
-#
-#     visited.add(node)
-#     cycle.add(node)
-#
-#     for child in graph[node]:
-#         dfs(child, graph, visited, cycle)
-#
-#     cycle.remove(node)
-#
+
 # for node in graph:
 #     dfs(node, graph, visited, cycle)
 #
