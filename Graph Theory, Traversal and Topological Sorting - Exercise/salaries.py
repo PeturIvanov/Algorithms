@@ -1,18 +1,3 @@
-graph = {}
-salaries = {}
-total_salaries = 0
-
-employees = int(input())
-for e in range(employees):
-    line = input()
-    graph[e] = []
-
-    for i in range(len(line)):
-        if line[i] == "Y":
-            graph[e].append(i)
-
-visited = set()
-
 def dfs(employee, graph, visited):
     result = 0
 
@@ -30,6 +15,19 @@ def dfs(employee, graph, visited):
     visited.remove(employee)
     return result
 
+employees = int(input())
+graph = {}
+salaries = {}
+
+for e in range(employees):
+    line = input()
+    graph[e] = []
+
+    for i in range(len(line)):
+        if line[i] == "Y":
+            graph[e].append(i)
+
+visited = set()
 for employee in graph:
     salaries[employee] = dfs(employee, graph, visited)
 
