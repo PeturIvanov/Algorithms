@@ -16,7 +16,7 @@ cycles = set()
 
 def dfs(node, graph, visited, cycles, sorted_nodes):
     if node in cycles:
-        raise Exception("cycle detected")
+        raise Exception("Cycle has detected! Invalid topological sorting.")
 
     if node in visited:
         return
@@ -36,7 +36,3 @@ for node in graph:
     dfs(node, graph, visited, cycles, sorted_nodes)
 
 print(*sorted_nodes, sep=" ")
-
-
-
-
