@@ -16,7 +16,7 @@ def is_important(source, destination, city):
 
     dfs(source, destination, city, visited)
 
-    return not destination in visited
+    return destination not in visited
 
 
 buildings = int(input())
@@ -24,6 +24,8 @@ number_of_streets = int(input())
 
 city = {}
 streets = []
+important_streets = []
+
 for _ in range(number_of_streets):
     first_building, second_building = input().split(" - ")
     streets.append((first_building, second_building))
@@ -38,9 +40,6 @@ for _ in range(number_of_streets):
     city[first_building].append(second_building)
 
 
-
-
-important_streets = []
 for source, destination in streets:
     if source not in city[destination] or destination not in city[source]:
         continue
@@ -48,12 +47,12 @@ for source, destination in streets:
     city[source].remove(destination)
     city[destination].remove(source)
 
-    if not is_important(source, destination, city):
-        city[source].append(destination)
-        city[destination].append(source)
+    if is_important(source, destination, city):
+        important_streets.append((source, destination))
 
     else:
-        important_streets.append((source, destination))
+        city[source].append(destination)
+        city[destination].append(source)
 
 result = ["Important streets:"]
 for street in important_streets:
