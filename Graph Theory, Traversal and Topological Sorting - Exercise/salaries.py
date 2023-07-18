@@ -17,7 +17,7 @@ def dfs(employee, graph, visited):
 
 employees = int(input())
 graph = {}
-salaries = {}
+total_salaries = 0
 
 for e in range(employees):
     line = input()
@@ -29,6 +29,6 @@ for e in range(employees):
 
 visited = set()
 for employee in graph:
-    salaries[employee] = dfs(employee, graph, visited)
+    total_salaries += dfs(employee, graph, visited)
 
-print(sum(salaries.values()))
+print(total_salaries)
