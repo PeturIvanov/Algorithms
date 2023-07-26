@@ -11,7 +11,9 @@ for _ in range(nodes):
     graph[source] = [int(x) for x in destinations.split()]
 
 
-def find_parents(start, target, graph, visited, parent):
+def find_parents(start, target, graph):
+    visited = [False] * (max(graph.keys()) + 1)
+    parent = [None] * (max(graph.keys()) + 1)
 
     visited[start] = True
     queue = deque([start])
@@ -19,7 +21,7 @@ def find_parents(start, target, graph, visited, parent):
     while queue:
         node = queue.popleft()
         if node == target:
-            return parent
+            return find_path(target, parent)
 
         for child in graph[node]:
             if visited[child]:
@@ -27,6 +29,8 @@ def find_parents(start, target, graph, visited, parent):
             visited[child] = True
             queue.append(child)
             parent[child] = node
+
+    return -1
 
 
 def find_path(target, parent):
@@ -41,15 +45,6 @@ def find_path(target, parent):
 
 for pair in range(pairs):
     start, target = [int(x) for x in input().split("-")]
+    path = find_parents(start, target, graph)
 
-    visited = [False] * (max(graph.keys()) + 1)
-    parent = [None] * (max(graph.keys()) + 1)
-
-    parent = find_parents(start, target, graph, visited, parent)
-    data = (start, target)
-    result = -1
-
-    if parent:
-        result = find_path(target, parent)
-
-    print(f"{{{', '.join(str(x) for x in data)}}} -> {result}")
+    print(f"{{{start}, {target}}} -> {path}")
