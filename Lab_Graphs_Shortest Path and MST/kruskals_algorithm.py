@@ -5,7 +5,7 @@ class Edge:
         self.first = first
 
     def __repr__(self):
-        return f"source {self.first} destination {self.second} weight {self.weight}"
+        return f"{self.first} - {self.second}"
 
 def find_root(parent, node):
     while node != parent[node]:
@@ -34,4 +34,4 @@ for edge in sorted(graph, key=lambda x: x.weight):
         forest.append(edge)
 
 for edge in forest:
-    print(f"{edge.first} - {edge.second}")
+    print(edge)
