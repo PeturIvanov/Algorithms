@@ -1,14 +1,14 @@
 from collections import deque
 
 
-nodes = int(input())
-pairs = int(input())
-graph = {}
+def find_path(target, parent):
+    path = deque()
+    node = target
+    while node:
+        path.appendleft(node)
+        node = parent[node]
 
-for _ in range(nodes):
-    source, destinations = input().split(":")
-    source = int(source)
-    graph[source] = [int(x) for x in destinations.split()]
+    return len(path) - 1
 
 
 def find_parents(start, target, graph):
@@ -32,16 +32,14 @@ def find_parents(start, target, graph):
 
     return -1
 
+nodes = int(input())
+pairs = int(input())
+graph = {}
 
-def find_path(target, parent):
-    path = deque()
-    node = target
-    while node:
-        path.appendleft(node)
-        node = parent[node]
-
-    return len(path) - 1
-
+for _ in range(nodes):
+    source, destinations = input().split(":")
+    source = int(source)
+    graph[source] = [int(x) for x in destinations.split()]
 
 for pair in range(pairs):
     start, target = [int(x) for x in input().split("-")]
