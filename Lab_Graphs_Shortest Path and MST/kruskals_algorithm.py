@@ -33,8 +33,5 @@ for edge in sorted(graph, key=lambda x: x.weight):
         parent[source_root] = destination_root
         forest.append(edge)
 
-    else:
-        print("have same root")
-
 for edge in forest:
     print(f"{edge.first} - {edge.second}")
