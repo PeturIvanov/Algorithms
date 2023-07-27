@@ -13,37 +13,7 @@ class Edge:
     def __gt__(self, other):
         return self.cost > other.cost
 
-
-budget = int(input())
-nodes = int(input())
-edges = int(input())
-graph = {}
-
-
-cable_connection = []
-customers = set()
-
-for _ in range(edges):
-    input_data = input().split()
-    first, second, cost = [int(x) for x in input_data[:3]]
-    connection = True if "connected" in input_data else False
-
-    if first not in graph:
-        graph[first] = []
-
-    if second not in graph:
-        graph[second] = []
-
-    edge = Edge(first, second, cost)
-    graph[first].append(edge)
-    graph[second].append(edge)
-
-    if connection:
-        cable_connection.append(edge)
-        customers.update((first, second))
-
-
-def prim(graph, customers, cable_connection, budget):
+def prim(graph, customers, budget):
     result = 0
 
     pq = PriorityQueue()
@@ -69,7 +39,6 @@ def prim(graph, customers, cable_connection, budget):
 
         result += min_cable.cost
         customers.add(non_connected_customer)
-        cable_connection.append(min_cable)
 
         for cable in graph[non_connected_customer]:
             pq.put(cable)
@@ -77,5 +46,30 @@ def prim(graph, customers, cable_connection, budget):
     return result
 
 
-result = prim(graph, customers, cable_connection, budget)
+budget = int(input())
+nodes = int(input())
+edges = int(input())
+graph = {}
+
+customers = set()
+
+for _ in range(edges):
+    input_data = input().split()
+    first, second, cost = [int(x) for x in input_data[:3]]
+    connection = True if "connected" in input_data else False
+
+    if first not in graph:
+        graph[first] = []
+
+    if second not in graph:
+        graph[second] = []
+
+    edge = Edge(first, second, cost)
+    graph[first].append(edge)
+    graph[second].append(edge)
+
+    if connection:
+        customers.update((first, second))
+
+result = prim(graph, customers, budget)
 print(f"Budget used: {result}")
