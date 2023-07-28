@@ -1,6 +1,3 @@
-n = int(input())
-
-
 def calc_fib(n, cache):
     if n in cache:
         return cache[n]
@@ -12,5 +9,5 @@ def calc_fib(n, cache):
     cache[n] = result
     return result
 
-
+n = int(input())
 print(calc_fib(n, {}))
