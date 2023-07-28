@@ -42,10 +42,3 @@ while row > 0 and col > 0:
         col -= 1
 
 print(*result, sep=", ")
-
-
-
-
-
-
-
