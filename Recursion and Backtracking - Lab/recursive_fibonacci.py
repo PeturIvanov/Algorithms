@@ -6,14 +6,12 @@
 
 
 def calc_fib_two(n):
-    fib0 = 1
+    fib0 = 0
     fib1 = 1
-    result = 0
     for _ in range(n - 1):
-        result = fib0 + fib1
-        fib0, fib1 = fib1, result
+        fib0, fib1 = fib1, fib0 + fib1
 
-    return result
+    return fib1
 
 n = int(input())
 print(calc_fib_two(n))
