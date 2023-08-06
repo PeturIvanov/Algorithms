@@ -44,7 +44,7 @@ edges = int(input())
 graph = {}
 
 for _ in range(edges):
-    first, second, weight = [int(x) for x in input().split(", ")]
+    first, second, weight = [int(x) for x in input().split()]
     if first not in graph:
         graph[first] = []
 
